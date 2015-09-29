@@ -1,11 +1,10 @@
 /**
  * Created by mike on 9/29/2015.
+ * Analystics for green jobs dataset
  */
 
-/**
- *
- * @type {Array.<T>}
- */
+/* globals _, pluck() */
+
 test_data = greenjobs.splice(0, 10);
 
 /**
