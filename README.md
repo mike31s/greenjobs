@@ -25,7 +25,7 @@ Here are example calls:
 console.log(listIndustries(test_data))
 console.log(countyGreenJobs(test_data))
 console.log(jobswithKeyword(test_data, 'PV'))
-//console.log(totalDegrees(uhdata));</script>
+</script>
 ```
 
 Consult greenjobs.js file for more details
