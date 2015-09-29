@@ -9,24 +9,24 @@ Provides five functions with analytics to compute data for [green jobs] (http://
 
 Provide the following scrpits in HTML files
 
-'''
+```
 <script src="//philipmjohnson.github.io/ics314f15/morea/underscore/underscore-min.js"></script>
 <script src="//philipmjohnson.github.io/ics314f15/morea/underscore/greenjobs.js"></script>
 <script src="greenjobs.js"></script>
-'''
+```
 
 #Usage
 
 Here are example calls:
 
-'''
+```
 <script>
   
 console.log(listIndustries(test_data))
 console.log(countyGreenJobs(test_data))
 console.log(jobswithKeyword(test_data, 'PV'))
 //console.log(totalDegrees(uhdata));</script>
-'''
+```
 
 Consult greenjobs.js file for more details
 
