@@ -3,19 +3,40 @@
  * Analystics for green jobs dataset
  */
 
-/* globals _, pluck() */
+/* globals _, countyGreenJobs */
+/* exported jobswithKeyword, hasIndustry, countyGreenJobs, listIndustries, industryJobs, maxIndustryJobs, data*/
 
-test_data = greenjobs.splice(0, 10);
-
+/**
+ * Returns true if has industry field
+ * @param record data set
+ * @returns {boolean} true if industry field is present
+ */
+function hasIndustry(record) {
+  return record.hasOwnProperty("Industry");
+}
 /**
  * Lists industries in the dataset
  * @param data the list of green jobs records
  * @returns {*} An object with each Industry present
  */
 function listIndustries(data) {
-  return _.uniq(_.pluck(data, 'Industry'))
+  if (!_.every(data, hasIndustry)) {
+    throw new Error("No industry field.");
+  }
+  if (!_.every(data, isEmptyIndustry)) {
+    throw new Error("Industry field is empty.");
+  }
+  return _.uniq(_.pluck(data, 'Industry'));
 }
+/**
+ * checks if the iundustry field is blank
+ * @param record data record
+ * @returns {boolean} returns true if industry field is not blank
+ */
+function isEmptyIndustry(record){
+  return record["Industry"] !== "";
 
+}
 /**
  * Counts the jobs available in each county
  * @param data the list of green jobs records
@@ -23,7 +44,7 @@ function listIndustries(data) {
  */
 function countyGreenJobs(data) {
   return _.countBy(data, function (num) {
-    return num['County']
+    return num['County'];
   });
 }
 /**
@@ -34,26 +55,9 @@ function countyGreenJobs(data) {
  */
 function jobswithKeyword(data, keyword) {
   var jobs = _.filter(data, function (num) {
-    return num['Job Title'].indexOf(keyword) != -1;
+    return num['Job Title'].indexOf(keyword) !== -1;
   });
 
-  return _.pluck(jobs, 'Job Title')
+  return _.pluck(jobs, 'Job Title');
 }
 
-/**
- * Lists job types and available positions
- * @param data the list of green jobs records
- * * @returns {*} an object with jobs and positions
- */
-function industryJobs(data) {
-
-}
-
-/**
- * Lists the industry and maximum amount of jobs available
- * @param data the list of green jobs records
- * @returns {*} a list of Job industries and openings
- */
-function maxIndustryJobs(data) {
-
-}
